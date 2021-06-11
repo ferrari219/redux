@@ -1,9 +1,9 @@
 //redux
 import { createStore } from 'redux';
 
-// const add = document.getElementById('js_add');
-// const minus = document.getElementById('js_minus');
-// const number = document.querySelector('.countView');
+const add = document.getElementById('js_add');
+const minus = document.getElementById('js_minus');
+const number = document.querySelector('.countView');
 
 // console.log(add, minus, countView);
 
@@ -16,6 +16,8 @@ const reducer = (state = 0, action) => {
 	else return state;
 };
 
+//
+
 // Store
 const store = createStore(reducer);
 console.log(store);
@@ -27,9 +29,11 @@ console.log(store);
 */
 
 // action
-store.dispatch({ type: 'Add' });
-store.dispatch({ type: 'Add' });
-store.dispatch({ type: 'Minus' });
+add.addEventListener('click', () => store.dispatch({ type: 'Add' }));
+minus.addEventListener('click', () => store.dispatch({ type: 'Minus' }));
+// store.dispatch({ type: 'Add' });
+// store.dispatch({ type: 'Add' });
+// store.dispatch({ type: 'Minus' });
 
 // state
 store.getState();
