@@ -16,8 +16,6 @@ const reducer = (state = 0, action) => {
 	else return state;
 };
 
-//
-
 // Store
 const store = createStore(reducer);
 console.log(store);
@@ -29,11 +27,25 @@ console.log(store);
 */
 
 // action
-add.addEventListener('click', () => store.dispatch({ type: 'Add' }));
-minus.addEventListener('click', () => store.dispatch({ type: 'Minus' }));
 // store.dispatch({ type: 'Add' });
 // store.dispatch({ type: 'Add' });
 // store.dispatch({ type: 'Minus' });
+
+// add.addEventListener('click', () => store.dispatch({ type: 'Add' }));
+// minus.addEventListener('click', () => store.dispatch({ type: 'Minus' }));
+
+const handleAdd = () => {
+	store.dispatch({ type: 'Add' });
+};
+const handleMinus = () => {
+	store.dispatch({ type: 'Minus' });
+};
+add.addEventListener('click', handleAdd);
+minus.addEventListener('click', handleMinus);
+
+// subscribe
+
+store.subscribe();
 
 // state
 store.getState();
