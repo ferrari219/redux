@@ -29,6 +29,7 @@ console.log(store);
 // action
 store.dispatch({ type: 'Add' });
 store.dispatch({ type: 'Add' });
+store.dispatch({ type: 'Minus' });
 
 // state
 store.getState();
