@@ -7,6 +7,7 @@ const number = document.querySelector('.countView');
 let count = 0;
 number.innerText = count;
 
+//function
 const handleUpdate = () => {
 	number.innerText = count;
 };
