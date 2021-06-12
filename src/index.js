@@ -8,13 +8,13 @@ const number = document.querySelector('.number');
 number.innerText = 0;
 
 // 수정명령어 보관소
-const reducer = (state = 0, action) => {
-	console.log('reducer:', state, action);
-	if (action.type === 'Add') {
-		console.log('Add');
+const reducer = (state = 0, { type }) => {
+	// console.log('reducer:', state, action);
+	if (type === 'Add') {
+		// console.log('Add');
 		return state + 1;
-	} else if (action.type === 'Minus') {
-		console.log('Minus');
+	} else if (type === 'Minus') {
+		// console.log('Minus');
 		return state - 1;
 	} else return state;
 };
@@ -31,5 +31,11 @@ const numberUpdate = () => {
 store.subscribe(numberUpdate);
 
 // 액션
-add.addEventListener('click', () => store.dispatch({ type: 'Add' }));
-minus.addEventListener('click', () => store.dispatch({ type: 'Minus' }));
+const handleAdd = () => {
+	store.dispatch({ type: 'Add' });
+};
+const handleMinus = () => {
+	store.dispatch({ type: 'Minus' });
+};
+add.addEventListener('click', handleAdd);
+minus.addEventListener('click', handleMinus);
