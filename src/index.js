@@ -22,7 +22,7 @@ const reducer = (state = [], action) => {
 		console.log(action.text);
 		return [{ text: action.text, id: Date.now() }, ...state];
 	} else if (action.type === 'Del_todo') {
-		return [];
+		return state.filter((todo) => todo.id !== action.id);
 	}
 	return state;
 };
@@ -33,10 +33,11 @@ const dispatchAddTodo = (text) => {
 	// store.dispatch({ type: 'Add_todo', text });
 	store.dispatch(addToDo(text)); //redux안으로 input 가능
 };
-const dispatchDeleteTodo = (id) => {
+const dispatchDeleteTodo = (e) => {
 	// console.log('delete');
 	// console.log(e.target.parentNode.id);
 	// store.dispatch({ type: 'Del_todo', id });
+	const id = parseInt(e.target.parentNode.id);
 	store.dispatch(deleteToDo(id));
 };
 
