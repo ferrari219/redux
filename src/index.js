@@ -1,41 +1,32 @@
 import { createStore } from 'redux';
 
-const add = document.getElementById('js_add');
-const minus = document.getElementById('js_minus');
-const number = document.querySelector('.number');
+const form = document.querySelector('form');
+const input = document.querySelector('input');
+const ul = document.querySelector('ul');
 
-// console.log(add, minus, number);
-number.innerText = 0;
-
-// 수정명령어 보관소
-const reducer = (state = 0, { type }) => {
-	// console.log('reducer:', state, action);
-	if (type === 'Add') {
-		// console.log('Add');
-		return state + 1;
-	} else if (type === 'Minus') {
-		// console.log('Minus');
-		return state - 1;
-	} else return state;
+const reducer = (state = [], action) => {
+	if (action.type === 'Add_todo') {
+		console.log(action.text);
+		return [...state, { text: action.text, id: Date.now() }];
+	} else if (action.type === 'Del_todo') {
+		return [];
+	}
+	return state;
 };
-
-// 저장소
 const store = createStore(reducer);
-console.log('store:', store);
 
-// 구독
-const numberUpdate = () => {
-	number.innerText = store.getState();
-	// console.log('detect');
-};
-store.subscribe(numberUpdate);
+store.subscribe(() => console.log(store.getState()));
 
-// 액션
-const handleAdd = () => {
-	store.dispatch({ type: 'Add' });
+// const createTodo = (todo) => {
+// 	const li = document.createElement('li');
+// 	li.innerText = todo;
+// 	ul.append(li);
+// };
+const onSubmit = (e) => {
+	e.preventDefault();
+	// console.log('submit');
+	const todo = input.value;
+	input.value = '';
+	store.dispatch({ type: 'Add_todo', text: todo });
 };
-const handleMinus = () => {
-	store.dispatch({ type: 'Minus' });
-};
-add.addEventListener('click', handleAdd);
-minus.addEventListener('click', handleMinus);
+form.addEventListener('submit', onSubmit);
