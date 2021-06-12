@@ -1,8 +1,8 @@
 const add = document.getElementById('js_add');
 const minus = document.getElementById('js_minus');
-const number = document.querySelector('.countView');
+const number = document.querySelector('.number');
 
-// console.log(add, minus, countView);
+// console.log(add, minus, number);
 
 let count = 0;
 number.innerText = count;
@@ -13,11 +13,13 @@ const handleUpdate = () => {
 const handleAdd = () => {
 	// console.log('Add');
 	count++;
+	console.log(count);
 	handleUpdate();
 };
 const handleMinus = () => {
 	// console.log('Minus');
 	count--;
+	console.log(count);
 	handleUpdate();
 };
 
