@@ -21,7 +21,7 @@ store.subscribe(() => console.log(store.getState()));
 // 	const li = document.createElement('li');
 // 	li.innerText = todo;
 // 	ul.append(li);
-// };
+// };   Done
 const onSubmit = (e) => {
 	e.preventDefault();
 	// console.log('submit');
