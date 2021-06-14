@@ -16,6 +16,7 @@ const createTodo = (text) => {
 	});
 	li.innerText = text;
 	li.id = Date.now();
+	li.append(btn);
 	ul.append(li);
 };
 const handleSubmit = (e) => {
