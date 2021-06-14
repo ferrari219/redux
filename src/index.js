@@ -1,3 +1,5 @@
+import { createStore } from 'redux';
+
 //타겟팅 설정
 const number = document.querySelector('.counter .js_countView');
 const add = document.querySelector('.counter .js_add');
@@ -8,12 +10,35 @@ const minus = document.querySelector('.counter .js_minus');
 let count = 0;
 number.innerText = count;
 
-//액션 셋팅
+// reducer
+const reducer = (state = 0, action) => {
+	// console.log(state, action);
+	switch (action.type) {
+		case 'Add':
+			return state + 1;
+		case 'Minus':
+			return state - 1;
+		default:
+			return state;
+	}
+};
+
+// store
+const store = createStore(reducer);
+
+//subscribe
+const onChange = () => {
+	number.innerText = store.getState();
+};
+store.subscribe(onChange);
+
+// action
 const handleAdd = () => {
-	console.log('Add');
+	store.dispatch({ type: 'Add' });
 };
 const handleMinus = () => {
-	console.log('Minus');
+	store.dispatch({ type: 'Minus' });
 };
+
 add.addEventListener('click', handleAdd);
 minus.addEventListener('click', handleMinus);
