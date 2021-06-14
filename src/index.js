@@ -1,32 +1,22 @@
-import { createStore } from 'redux';
+//targeting
+const form = document.querySelector('.todo form');
+const input = document.querySelector('.todo input');
+const ul = document.querySelector('.todo ul');
 
-const form = document.querySelector('form');
-const input = document.querySelector('input');
-const ul = document.querySelector('ul');
+// console.log(form, input, ul);
 
-const reducer = (state = [], action) => {
-	if (action.type === 'Add_todo') {
-		console.log(action.text);
-		return [...state, { text: action.text, id: Date.now() }];
-	} else if (action.type === 'Del_todo') {
-		return [];
-	}
-	return state;
+//action
+const createTodo = (text) => {
+	// console.log(text);
+	const li = document.createElement('li');
+	li.innerText = text;
+	li.id = Date.now();
+	ul.append(li);
 };
-const store = createStore(reducer);
-
-store.subscribe(() => console.log(store.getState()));
-
-// const createTodo = (todo) => {
-// 	const li = document.createElement('li');
-// 	li.innerText = todo;
-// 	ul.append(li);
-// };
-const onSubmit = (e) => {
+const handleSubmit = (e) => {
 	e.preventDefault();
-	// console.log('submit');
-	const todo = input.value;
+	const text = input.value;
 	input.value = '';
-	store.dispatch({ type: 'Add_todo', text: todo });
+	createTodo(text);
 };
-form.addEventListener('submit', onSubmit);
+form.addEventListener('submit', handleSubmit);
