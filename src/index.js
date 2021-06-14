@@ -1,4 +1,4 @@
-//redux
+//redux, Done
 import { createStore } from 'redux';
 
 const add = document.getElementById('js_add');
