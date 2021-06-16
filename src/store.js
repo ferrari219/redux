@@ -1,25 +1,27 @@
 import { createStore } from 'redux';
 
-const ADD = 'Add';
-const DELETE = 'Delete';
+const Add = 'Add';
+const Delete = 'Delete';
 
+//Action
 const actionAdd = (text) => {
 	return {
-		type: ADD,
+		type: Add,
 		text,
 	};
 };
 const actionDelete = (id) => {
 	return {
-		type: DELETE,
-		id: parseInt(id),
+		type: Delete,
+		id,
 	};
 };
 
+//Reducer
 const reducer = (state = [], action) => {
-	// console.log(state, action);
+	console.log('store.js action: ', action);
 	switch (action.type) {
-		case ADD:
+		case Add:
 			return [
 				{
 					text: action.text,
@@ -27,16 +29,17 @@ const reducer = (state = [], action) => {
 				},
 				...state,
 			];
-		case DELETE:
+		case Delete:
 			return state.filter((todo) => todo.id !== action.id);
 		default:
 			return state;
 	}
 };
-const store = createStore(reducer);
-// console.log(store);
 
-export const actionCreators = {
+//Store
+const store = createStore(reducer);
+
+export const actionCreator = {
 	actionAdd,
 	actionDelete,
 };
