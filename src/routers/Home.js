@@ -1,39 +1,51 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import Todo from '../components/Todo';
 import { actionCreator } from '../store';
 
-const Home = ({ state, addTodo }) => {
-	// console.log('Home.js > Home :', state, dispatch);
+const Home = (props) => {
+	console.log('Home:', props);
 	const [value, setValue] = useState('');
+
 	const onChange = (e) => {
 		const value = e.target.value;
+		// console.log(value);
 		setValue(value);
 	};
 	const onSubmit = (e) => {
-		e.preventDefault();
-		console.log('onSubmit: ', value);
+		console.log(value);
 		setValue('');
-		addTodo(value);
+		props.addTodo(value);
 	};
+
 	return (
 		<div>
-			<h3>test</h3>
+			<h1>Home</h1>
 			<form onSubmit={onSubmit}>
 				<input type="text" value={value} onChange={onChange} />
 				<button>Add</button>
 			</form>
-			<ul>{JSON.stringify(state)}</ul>
+			<ul>{JSON.stringify(props.state)}</ul>
+			<ul>
+				{props.state.map((todo) => (
+					<Todo {...todo} key={todo.id} />
+				))}
+			</ul>
 		</div>
 	);
 };
 
+//connect를 통해 원래의 props에 mapStateToProps, mapDispatchToProps를 추가함.
+//Home에서 props로 받는다.
+
+// current State
 const mapStateToProps = (state, ownProps) => {
-	console.log('Home.js > mapStateToProps :', state, ownProps);
-	return { state: state };
+	console.log('mapStateToProps:', state, ownProps);
+	return { state };
 };
+// dispatch
 const mapDispatchToProps = (dispatch, ownProps) => {
-	console.log('Home.js > mapDispatchToProps :', dispatch, ownProps);
-	// return dispatch
+	console.log('mapDispatchToProps:', dispatch, ownProps);
 	return {
 		addTodo: (text) => dispatch(actionCreator.actionAdd(text)),
 		deleteTodo: (id) => dispatch(actionCreator.actionDelete(id)),

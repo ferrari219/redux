@@ -1,9 +1,9 @@
 import { createStore } from 'redux';
 
+//reducer
 const Add = 'Add';
 const Delete = 'Delete';
 
-//Action
 const actionAdd = (text) => {
 	return {
 		type: Add,
@@ -17,9 +17,7 @@ const actionDelete = (id) => {
 	};
 };
 
-//Reducer
 const reducer = (state = [], action) => {
-	console.log('store.js action: ', action);
 	switch (action.type) {
 		case Add:
 			return [
@@ -36,7 +34,7 @@ const reducer = (state = [], action) => {
 	}
 };
 
-//Store
+//store
 const store = createStore(reducer);
 
 export const actionCreator = {
