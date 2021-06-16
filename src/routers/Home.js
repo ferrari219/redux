@@ -1,30 +1,35 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';
+import Todo from '../components/Todo';
 
-const Home = ({ todos, addToDo }) => {
+const Home = ({ todos, addTodo }) => {
 	// console.log(props);
-	const [text, setText] = useState('');
+	// console.log(todos, dispatch);
+	const [value, setValue] = useState('');
 	const onChange = (e) => {
-		const text = e.target.value;
-		setText(text);
-		// console.log(text);
+		const value = e.target.value;
+		// console.log(value);
+		setValue(value);
 	};
 	const onSubmit = (e) => {
 		e.preventDefault();
-		// console.log('onSubmit');
-		console.log(text);
-		setText('');
-		addToDo(text);
+		console.log(value);
+		setValue('');
+		addTodo(value);
 	};
 	return (
 		<div>
-			<h3>test</h3>
 			<form onSubmit={onSubmit}>
-				<input type="text" value={text} onChange={onChange} />
+				<input type="text" value={value} onChange={onChange} />
 				<button>Add</button>
 			</form>
-			<ul>{JSON.stringify(todos)}</ul>
+			{/* <ul>{JSON.stringify(todos)}</ul> */}
+			<ul>
+				{todos.map((todo) => (
+					<Todo {...todo} key={todo.id} />
+				))}
+			</ul>
 		</div>
 	);
 };
@@ -36,7 +41,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
 	console.log(dispatch, ownProps);
 	return {
-		addToDo: (text) => dispatch(actionCreators.addToDo(text)),
+		addTodo: (text) => dispatch(actionCreators.actionAdd(text)),
 	};
 };
 
