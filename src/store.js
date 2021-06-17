@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { createAction, createReducer, configureStore } from '@reduxjs/toolkit';
+import { createAction, createReducer } from '@reduxjs/toolkit';
 
 //reducer
 const actionAdd = createAction('Add');
@@ -47,8 +47,7 @@ const reducer = createReducer([], {
 // };
 
 //store
-// const store = createStore(reducer);
-const store = configureStore({ reducer });
+const store = createStore(reducer);
 
 export const actionCreator = {
 	actionAdd,
