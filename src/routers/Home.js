@@ -47,7 +47,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
 	console.log('mapDispatchToProps:', dispatch, ownProps);
 	return {
-		addTodo: (text) => dispatch(actionCreator.actionAdd(text)),
+		// addTodo: (text) => dispatch(actionCreator.actionAdd(text)), //헷갈리지 않게 payload로 변경
+		addTodo: (payload) => dispatch(actionCreator.actionAdd(payload)),
 	};
 };
 
