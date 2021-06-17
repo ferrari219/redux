@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { actionCreator } from '../store';
+// import { actionCreator } from '../store';
+import { csDel } from '../store';
 import { Link } from 'react-router-dom';
 
 const Todo = (todo) => {
@@ -15,7 +16,7 @@ const Todo = (todo) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
 	console.log('mapDispatchToProps: ', ownProps);
 	return {
-		deleteTodo: () => dispatch(actionCreator.actionDelete(ownProps.id)),
+		deleteTodo: () => dispatch(csDel(ownProps.id)),
 	};
 };
 export default connect(null, mapDispatchToProps)(Todo);

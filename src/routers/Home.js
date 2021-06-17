@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Todo from '../components/Todo';
-import { actionCreator } from '../store';
+// import { actionCreator } from '../store';
+import { csAdd } from '../store';
 
 const Home = (props) => {
 	console.log('Home:', props);
@@ -48,7 +49,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 	console.log('mapDispatchToProps:', dispatch, ownProps);
 	return {
 		// addTodo: (text) => dispatch(actionCreator.actionAdd(text)), //헷갈리지 않게 payload로 변경
-		addTodo: (payload) => dispatch(actionCreator.actionAdd(payload)),
+		// addTodo: (payload) => dispatch(actionCreator.actionAdd(payload)),
+		addTodo: (payload) => dispatch(csAdd(payload)),
 	};
 };
 

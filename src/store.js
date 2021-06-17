@@ -1,9 +1,10 @@
-import { createStore } from 'redux';
-import { createAction, createReducer, configureStore } from '@reduxjs/toolkit';
+// import { createStore } from 'redux';
+// import { createAction, createReducer, configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 //reducer
-const actionAdd = createAction('Add');
-const actionDelete = createAction('Delete');
+// const actionAdd = createAction('Add');
+// const actionDelete = createAction('Delete');
 // const Add = 'Add';
 // const Delete = 'Delete';
 
@@ -20,14 +21,25 @@ const actionDelete = createAction('Delete');
 // 	};
 // };
 // console.log('store: ', actionAdd, actionDelete); // function형태
-console.log('store: ', actionAdd(), actionDelete());
+// console.log('store: ', actionAdd(), actionDelete());
 
-const reducer = createReducer([], {
-	[actionAdd]: (state, action) => {
-		state.push({ text: action.payload, id: Date.now() });
+const toDos = createSlice({
+	name: 'toDosReducer',
+	initialState: [],
+	reducers: {
+		csAdd: (state, action) => {
+			state.push({ text: action.payload, id: Date.now() });
+		},
+		csDel: (state, action) => state.filter((todo) => todo.id !== action.payload),
 	},
-	[actionDelete]: (state, action) => state.filter((todo) => todo.id !== action.payload),
 });
+
+// const reducer = createReducer([], {
+// 	[actionAdd]: (state, action) => {
+// 		state.push({ text: action.payload, id: Date.now() });
+// 	},
+// 	[actionDelete]: (state, action) => state.filter((todo) => todo.id !== action.payload),
+// });
 // const reducer = (state = [], action) => {
 // 	switch (action.type) {
 // 		case actionAdd.type:
@@ -48,11 +60,14 @@ const reducer = createReducer([], {
 
 //store
 // const store = createStore(reducer);
-const store = configureStore({ reducer });
+// const store = configureStore({ reducer });
 
-export const actionCreator = {
-	actionAdd,
-	actionDelete,
-};
+// export const actionCreator = {
+// 	actionAdd,
+// 	actionDelete,
+// };
 
-export default store;
+export const { csAdd, csDel } = toDos.actions;
+
+// export default store;
+export default configureStore({ reducer: toDos.reducer });
