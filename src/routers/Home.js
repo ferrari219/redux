@@ -20,7 +20,7 @@ const Home = (props) => {
 
 	return (
 		<div>
-			<h1>Home</h1>
+			<h3>Home</h3>
 			<form onSubmit={onSubmit}>
 				<input type="text" value={value} onChange={onChange} />
 				<button>Add</button>
@@ -48,7 +48,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 	console.log('mapDispatchToProps:', dispatch, ownProps);
 	return {
 		addTodo: (text) => dispatch(actionCreator.actionAdd(text)),
-		deleteTodo: (id) => dispatch(actionCreator.actionDelete(id)),
 	};
 };
 
