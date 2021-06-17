@@ -23,7 +23,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 // console.log('store: ', actionAdd, actionDelete); // function형태
 // console.log('store: ', actionAdd(), actionDelete());
 
-const toDos = createSlice({
+const reducer = createSlice({
 	name: 'toDosReducer',
 	initialState: [],
 	reducers: {
@@ -67,7 +67,7 @@ const toDos = createSlice({
 // 	actionDelete,
 // };
 
-export const { csAdd, csDel } = toDos.actions;
+export const { csAdd, csDel } = reducer.actions;
 
 // export default store;
-export default configureStore({ reducer: toDos.reducer });
+export default configureStore({ reducer: reducer.reducer });
