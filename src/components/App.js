@@ -5,10 +5,12 @@ import Detail from '../routers/Detail';
 
 const App = () => {
 	return (
-		<Router>
-			<Route path="/" exact component={Home} />
-			<Route path="/:id" exact component={Detail} />
-		</Router>
+		<div>
+			<Router>
+				<Route path="/" exact component={Home} />
+				<Route path="/:id" component={Detail} />
+			</Router>
+		</div>
 	);
 };
 
